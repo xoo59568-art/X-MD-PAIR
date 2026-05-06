@@ -93,10 +93,10 @@ app.get("/pairing", async (req, res) => {
                     let encoded = generateid();
                     const userJid = sparky.user?.id?.replace(/:.*@/, '@');
                     let session = await sparky.sendMessage(userJid, {
-                        text: "A-S-W-I-N-S-P-A-R-K-Y:" + encoded,
+                        text: "Rabbitxmd:" + encoded,
                     });
                     let text =
-                        "*Thank You for Using X BOT MD*\n\n\nDeveloper Contact: +91 70129 84396\n\nOfficial Channel: https://whatsapp.com/channel/0029Va9ZOf36rsR1Ym7O2x00\n\nIf you encounter any issues or wish to report a problem, please feel free to join our dedicated support group: https://chat.whatsapp.com/I6lxNWSNneILUeqRqCa36S\n\nWe appreciate your feedback and are here to assist you!";
+                        "*Tʜᴀɴᴋs Fᴏʀ Usᴇɪɴɢ RᴀʙʙɪᴛXᴍᴅ*\n\n\nDᴇᴠᴇʟᴏᴘᴇʀ Cᴏɴᴛᴀᴄᴛ: +917439382677\n\nSᴜᴘᴘᴏʀᴛ Cʜᴀɴɴᴇʟ: https://whatsapp.com/channel/0029Vb7DXnSFnSz8KH3Oqz39\n\nSᴜᴘᴘᴏᴛ Gʀᴏᴜᴘ: https://chat.whatsapp.com/EpBL1zoUNS01eLBo98YOUS?mode=gi_t";
                     await sparky.sendMessage(
                         userJid,
                         { text },
