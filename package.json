@@ -1,15 +1,14 @@
 {
-  "name": "x-bot-md-pair",
-  "version": "1.5.0",
-  "description": "Web pair for every bot",
+  "name": "mrr4bbit-pair",
+  "version": "2.0.0",
+  "description": "MRR4BBIT WhatsApp Pair",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "pm2 start index.js --attach --name X-MD-PAIR",
-    "stop": "pm2 stop X-MD-PAIR"
+    "start": "node index.js"
   },
-  "author": "aswin Sparky",
+  "author": "MRR4BBIT",
   "dependencies": {
     "@whiskeysockets/baileys": "latest",
     "child_process": "^1.0.2",
@@ -19,7 +18,6 @@
     "gifted-btns": "^1.0.2",
     "mongoose": "^9.3.3",
     "path": "latest",
-    "pino": "^8.1.0",
-    "pm2": "^6.0.14"
+    "pino": "^8.1.0"
   }
 }
