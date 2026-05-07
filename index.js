@@ -1,4 +1,4 @@
-// ASWIN SPARKY ✅
+// MRR4BBIT ✅
 
 import express from "express";
 import pino from "pino";
@@ -15,6 +15,7 @@ import makeWASocket, {
     Browsers
 } from "@whiskeysockets/baileys";
 import connectDatabase from "./lib/database.js";
+import { sendButtons } from "gifted-btns";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -78,7 +79,7 @@ app.get("/pairing", async (req, res) => {
                 num = num.replace(/[^0-9]/g, "");
                 const code = await sparky.requestPairingCode(num);
                 if (!res.headersSent) {
-                    await res.send({ code });
+                    await res.send({ code: code, bot: "MRR4BBIT" });
                 }
             }
 
@@ -92,16 +93,38 @@ app.get("/pairing", async (req, res) => {
                     const sessionsparky = fs.readFileSync("./session/creds.json", "utf8");
                     let encoded = generateid();
                     const userJid = sparky.user?.id?.replace(/:.*@/, '@');
+                    const sessionId = "MRR4BBIT:" + encoded;
                     let session = await sparky.sendMessage(userJid, {
-                        text: "Rabbitxmd:" + encoded,
+                        text: sessionId,
                     });
-                    let text =
-                        "*Tʜᴀɴᴋs Fᴏʀ Usᴇɪɴɢ RᴀʙʙɪᴛXᴍᴅ*\n\n\nDᴇᴠᴇʟᴏᴘᴇʀ Cᴏɴᴛᴀᴄᴛ: +917439382677\n\nSᴜᴘᴘᴏʀᴛ Cʜᴀɴɴᴇʟ: https://whatsapp.com/channel/0029Vb7DXnSFnSz8KH3Oqz39\n\nSᴜᴘᴘᴏᴛ Gʀᴏᴜᴘ: https://chat.whatsapp.com/EpBL1zoUNS01eLBo98YOUS?mode=gi_t";
-                    await sparky.sendMessage(
-                        userJid,
-                        { text },
-                        { quoted: session }
-                    );
+                    const caption =
+                        "*Tʜᴀɴᴋs Fᴏʀ Usᴇɪɴɢ MRR4BBIT*\n\n" +
+                        "📌 *Sᴇssɪᴏɴ ID ɴɪᴄʜᴇ ᴅᴇᴏᴡᴀ ʜᴏʟᴏ*\n\n" +
+                        "Dᴇᴠᴇʟᴏᴘᴇʀ Cᴏɴᴛᴀᴄᴛ: +917439382677\n\n" +
+                        "Sᴜᴘᴘᴏʀᴛ Cʜᴀɴɴᴇʟ: https://whatsapp.com/channel/0029Vb7DXnSFnSz8KH3Oqz39\n\n" +
+                        "Sᴜᴘᴘᴏᴛ Gʀᴏᴜᴘ: https://chat.whatsapp.com/EpBL1zoUNS01eLBo98YOUS?mode=gi_t";
+
+                    await sendButtons(sparky, userJid, {
+                        title: '🤖 MRR4BBIT SESSION',
+                        text: caption,
+                        footer: '> *Powered by MRR4BBIT*',
+                        buttons: [
+                            {
+                                name: 'cta_copy',
+                                buttonParamsJson: JSON.stringify({
+                                    display_text: '📋 Copy Session ID',
+                                    copy_code: sessionId
+                                })
+                            },
+                            {
+                                name: 'cta_url',
+                                buttonParamsJson: JSON.stringify({
+                                    display_text: '🌐 Support Group',
+                                    url: 'https://chat.whatsapp.com/EpBL1zoUNS01eLBo98YOUS?mode=gi_t'
+                                })
+                            }
+                        ]
+                    });
                     const user = await User.create({
                         sessionId: encoded,
                         creds: sessionsparky
